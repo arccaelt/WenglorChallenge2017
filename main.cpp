@@ -4,17 +4,10 @@
 
 using namespace std;
 
-void displayHelp()
-{
-    cout << "Usage: <program.exe> inputFolderPath logoFolderPath outputFolderPath";
-}
-
 int main(int argc, char **argv)
 {
     // get the cwd of the excutable
     string cwd = DirUtils::getcwd();
-
-    cout << cwd << "\n";
 
     // create the output folder
     DirUtils::dirCreate(cwd + "\\Output");
@@ -25,7 +18,10 @@ int main(int argc, char **argv)
     // create an object of BMPImage class and make it load the logo file
     BMPImage logo(DirUtils::getFiles(cwd + "\\Logo")[0]);
 
-    for(int f = 0; f < files.size(); f++)
+    // NOTE: Storing the size of the container instead of calling this method
+    // for each iteration IS WAY FASTER THEN I THOUGHT
+    int fs = files.size();
+    for(int f = 0; f < fs; f++)
     {
         //cout << f << "/" << files.size() << "\n";
         // load the current input file
