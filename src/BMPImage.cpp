@@ -25,7 +25,7 @@ void BMPImage::copyLogo(BMPImage &logo, Rect &r)
     }
 }
 
-std::vector<Rect> BMPImage::getWhiteSpots(int logow, int logoh)
+std::vector<Rect> BMPImage::getWhiteSpots(int &logow, int &logoh)
 {
     std::vector<Rect> founds;
     for(int x = 0; x < w && (x + logow) <= w; x++)
@@ -55,6 +55,9 @@ std::vector<Rect> BMPImage::getWhiteSpots(int logow, int logoh)
             end:
                 ;
 
+            // If the subregion we seached is good then we can skip the next
+            // 'logow' columns because it won't interest us and we will speed
+            // up the code quite a bit
             if(good)
             {
                 //std::cout << "good: " << x << " " << y
@@ -62,6 +65,7 @@ std::vector<Rect> BMPImage::getWhiteSpots(int logow, int logoh)
                 //          << " " << "\n";
 
                 Rect r = {x, y, logow, logoh};
+                y += logow;
                 founds.push_back(r);
             }
         }
