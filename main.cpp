@@ -14,25 +14,27 @@ int main(int argc, char **argv)
     // get the cwd of the excutable
     string cwd = DirUtils::getcwd();
 
+    cout << cwd << "\n";
+
     // create the output folder
     DirUtils::dirCreate(cwd + "\\Output");
 
     // get all input files
-    vector<string> files = DirUtils::getFiles("");
+    vector<string> files = DirUtils::getFiles(cwd + "\\Input");
 
     // create an object of BMPImage class and make it load the logo file
-    BMPImage logo(DirUtils::getFiles("")[0]);
+    BMPImage logo(DirUtils::getFiles(cwd + "\\Logo")[0]);
 
     for(int f = 0; f < files.size(); f++)
     {
-        cout << f << "/" << files.size() << "\n";
+        //cout << f << "/" << files.size() << "\n";
         // load the current input file
         BMPImage img(files[f]);
-        cout << img.w << " " << img.h << "\n";
+        //cout << img.w << " " << img.h << "\n";
 
         // find all regions which can store the wenglor's logo
         vector<Rect> regions = img.getWhiteSpots(logo.w, logo.h);
-        cout << regions.size() << "\n";
+        //cout << regions.size() << "\n";
         // for each region, use the copyLogo method to copy the logo in that region
         for(int i = 0; i < regions.size(); i++)
         {
