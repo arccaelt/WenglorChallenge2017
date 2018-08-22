@@ -18,10 +18,10 @@ int main(int argc, char **argv)
     DirUtils::dirCreate(cwd + "\\Output");
 
     // get all input files
-    vector<string> files = DirUtils::getFiles("C:\\Users\\arco\\Desktop\\Wenglor\\data\\Input");
+    vector<string> files = DirUtils::getFiles("");
 
     // create an object of BMPImage class and make it load the logo file
-    BMPImage logo(DirUtils::getFiles("C:\\Users\\arco\\Desktop\\Wenglor\\data\\Logo")[0]);
+    BMPImage logo(DirUtils::getFiles("")[0]);
 
     for(int f = 0; f < files.size(); f++)
     {
