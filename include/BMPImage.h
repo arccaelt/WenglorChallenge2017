@@ -18,9 +18,8 @@ public:
     int w, h;
 
     BMPImage(std::string path);
-    std::vector<Rect> getWhiteSpots(int w, int h);
+    std::vector<Rect> getWhiteSpots(int &logow, int &logoh);
     void copyLogo(BMPImage &logo, Rect &r);
-
     // defined here so that it will be inlined by default
     void save(std::string path)
     {
