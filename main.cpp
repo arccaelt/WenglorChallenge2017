@@ -23,17 +23,17 @@ int main(int argc, char **argv)
     int fs = files.size();
     for(int f = 0; f < fs; f++)
     {
-        //cout << f << "/" << files.size() << "\n";
         // load the current input file
         BMPImage img(files[f]);
-        //cout << img.w << " " << img.h << "\n";
 
         // find all regions which can store the wenglor's logo
         vector<Rect> regions = img.getWhiteSpots(logo.w, logo.h);
-        //cout << regions.size() << "\n";
+
         // for each region, use the copyLogo method to copy the logo in that region
-        for(int i = 0; i < regions.size(); i++)
+        int rs = regions.size();
+        for(int i = 0; i < rs; i++)
         {
+            //cout << regions[i].x << " " << regions[i].y << "\n";
             img.copyLogo(logo, regions[i]);
         }
 
