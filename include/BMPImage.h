@@ -11,6 +11,8 @@ struct Rect
     int w, h;
 };
 
+typedef unsigned char uchar;
+
 class BMPImage
 {
 public:
